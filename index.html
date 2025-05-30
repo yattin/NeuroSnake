@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>贪食蛇</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-container">
+        <div class="ui-panel">
+            <div class="scores">
+                 <div id="scoreboard">
+                     <span>分数: </span><span id="scoreValue">0</span>
+                 </div>
+                 <div id="highScoreDisplay">
+                     <span>最高分: </span><span id="highScoreValue">0</span>
+                 </div>
+            </div>
+            <div class="controls">
+                <button id="startBtn">开始</button>
+                <button id="pauseBtn" style="display: none;">暂停</button>
+                <button id="modeSwitchBtn">切换至 AI 模式</button>
+            </div>
+        </div>
+        <canvas id="gameCanvas"></canvas>
+    </div>
+    <!-- UI 元素将在这里添加 -->
+    <script src="game.js"></script>
+    <script src="ai-controller.js"></script>
+    <script src="level-system.js"></script>
+</body>
+</html>
