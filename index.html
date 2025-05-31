@@ -23,7 +23,31 @@
                 <button id="modeSwitchBtn">切换至 AI 模式</button>
             </div>
         </div>
-        <canvas id="gameCanvas"></canvas>
+        <div class="game-main-area">
+            <canvas id="gameCanvas"></canvas>
+            <div class="game-instructions">
+                <div class="instructions-en">
+                    <h3>Game Instructions</h3>
+                    <p><strong>Controls:</strong> Use Arrow Keys (↑ ↓ ← →) or WASD keys to move the snake.</p>
+                    <p><strong>Buttons:</strong></p>
+                    <ul>
+                        <li>"Start Game / Pause Game / Resume Game": To control game state.</li>
+                        <li>"Toggle AI Mode": Switch between manual play and AI auto-play.</li>
+                    </ul>
+                    <p><strong>Objective:</strong> Eat food to grow longer. Avoid hitting walls or the snake's own body.</p>
+                </div>
+                <div class="instructions-zh">
+                    <h3>游戏说明</h3>
+                    <p><strong>控制:</strong> 使用方向键 (↑ ↓ ← →) 或 WASD 键来移动小蛇。</p>
+                    <p><strong>按钮:</strong></p>
+                    <ul>
+                        <li>“开始游戏 / 暂停游戏 / 继续游戏”：控制游戏状态。</li>
+                        <li>“切换AI模式”：在手动操作和AI自动游戏之间切换。</li>
+                    </ul>
+                    <p><strong>目标:</strong> 吃掉食物使身体变长。避免撞到墙壁或蛇自己的身体。</p>
+                </div>
+            </div>
+        </div>
     </div>
     <!-- UI 元素将在这里添加 -->
     <script src="game.js"></script>

@@ -77,4 +77,75 @@ body {
     background-color: #1976D2; /* Material Blue 700 */
 }
 
+/* Main area for canvas and instructions */
+.game-main-area {
+    display: flex;
+    gap: 20px; /* Space between canvas and instructions */
+    align-items: flex-start; /* Align items to the top */
+    width: 100%; /* Occupy full width of game-container's content area if game-container is wide enough */
+    margin-top: 15px; /* Space below ui-panel */
+}
+
+#gameCanvas { /* Ensuring this rule is present and updated */
+    border: 1px solid #ccc;
+    background-color: #e0e0e0;
+    flex-shrink: 0; /* Prevent canvas from shrinking */
+}
+
+/* Styles for Game Instructions */
+.game-instructions {
+    padding: 15px 20px; /* Adjusted padding */
+    background-color: #ffffff; /* White card background */
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Standard card shadow */
+    width: 320px; /* Fixed width for the instruction panel */
+    flex-shrink: 0; /* Prevent from shrinking */
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+    text-align: left;
+    /* Consider adding max-height and overflow: auto if content can be very long */
+    /* max-height: 400px; Set to canvas height for alignment if desired */
+    /* overflow-y: auto; */
+}
+
+.game-instructions h3 {
+    font-size: 1.1em; /* Slightly smaller to fit better */
+    color: #2196F3; /* Material Blue */
+    margin-top: 0;
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid #e0e0e0;
+    font-weight: 500;
+}
+
+.game-instructions p,
+.game-instructions li {
+    font-size: 0.9em; /* Slightly smaller text for denser info */
+    line-height: 1.5;
+    color: #333333; /* Darker grey for better contrast on white */
+    margin-bottom: 8px;
+}
+
+.game-instructions strong {
+    font-weight: 500; /* Material uses 500 for medium */
+    color: #000000; /* Black for strong emphasis */
+}
+
+.game-instructions ul {
+    list-style-type: disc;
+    padding-left: 20px; /* Standard indent for list items */
+    margin-top: 4px;
+    margin-bottom: 8px;
+}
+
+.game-instructions .instructions-en + .instructions-zh,
+.game-instructions .instructions-zh + .instructions-en {
+    margin-top: 15px; /* Space between language blocks */
+}
+
+.game-instructions .instructions-en:last-child,
+.game-instructions .instructions-zh:last-child {
+    margin-bottom: 0; /* Remove bottom margin from the last block */
+}
+
 /* 更多样式将在这里添加 */

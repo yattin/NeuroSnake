@@ -1,36 +1,28 @@
 # Project Implementation Plan
 ## Project Overview
-根据 game-design.md 文档实现一个贪食蛇游戏。
+Add bilingual (Chinese and English) game instructions below the game interface in the NeuroSnake game. The instructions should cover basic game controls and modes.
+
 ## Context Files
-- contexts/CONTEXT_TASK_SETUP.md (pending)
-- contexts/CONTEXT_TASK_BASE_FRAMEWORK.md (pending)
-- contexts/CONTEXT_TASK_CORE_LOGIC.md (pending)
-- contexts/CONTEXT_TASK_AI_CONTROL.md (pending)
-- contexts/CONTEXT_TASK_ADVANCED_FEATURES.md (pending)
+- contexts/CONTEXT_TASK1.md (content integrated into TASK2, effectively completed)
+- contexts/CONTEXT_TASK2.md (completed)
+- contexts/CONTEXT_TASK3.md (completed)
+- contexts/CONTEXT_TASK4.md (completed)
+- contexts/CONTEXT_TASK5_OPTIMIZE_HTML.md (completed)
+- contexts/CONTEXT_TASK6_OPTIMIZE_CSS.md (completed)
+- contexts/CONTEXT_TASK7_OPTIMIZE_REVIEW.md (completed)
+
+
 ## Subtask List
-- [x] TASK_SETUP: 项目初始化，创建基本文件结构 (`index.html`, `style.css`, `game.js`, `ai-controller.js`, `level-system.js`) [completed]
-- [x] TASK_BASE_FRAMEWORK: 基础框架搭建 [completed]
-  - [x] TASK_BASE_FRAMEWORK_CANVAS: 创建20x20网格Canvas画布 (index.html, game.js) [completed]
-  - [x] TASK_BASE_FRAMEWORK_UI_SCOREBOARD: 实现Material Design UI计分板 (index.html, style.css, game.js) [completed]
-  - [x] TASK_BASE_FRAMEWORK_UI_MODE_SWITCH: 实现Material Design UI模式切换按钮 (index.html, style.css, game.js) [completed]
-  - [x] TASK_BASE_FRAMEWORK_UI_CONTROLS: 实现Material Design UI开始/暂停控制 (index.html, style.css, game.js) [completed]
-- [x] TASK_CORE_LOGIC: 核心游戏逻辑 [completed]
-  - [x] TASK_CORE_LOGIC_SNAKE_MOVEMENT: 蛇移动与生长算法 (game.js) [completed]
-  - [x] TASK_CORE_LOGIC_FOOD_GENERATION: 随机食物生成机制 (game.js) [completed]
-  - [x] TASK_CORE_LOGIC_COLLISION_DETECTION: 碰撞检测系统（墙/自身） (game.js) [completed]
-  - [x] TASK_CORE_LOGIC_SCORING: 基础计分系统 (game.js) [completed]
-- [x] TASK_AI_CONTROL: AI控制系统 [completed]
-  - [x] TASK_AI_CONTROL_ASTAR: A*寻路算法实现 (ai-controller.js) [completed]
-  - [x] TASK_AI_CONTROL_PATH_OPTIMIZATION: 路径优化决策逻辑 (ai-controller.js) [completed]
-  - [x] TASK_AI_CONTROL_MODE_SWITCH: 手动/AI模式切换 (game.js, ai-controller.js) [completed]
-- [x] TASK_ADVANCED_FEATURES: 高级功能 [completed]
-  - [x] TASK_ADVANCED_FEATURES_LEVEL_SYSTEM: 关卡系统（速度/障碍物递增） (level-system.js, game.js) [completed]
-  - [x] TASK_ADVANCED_FEATURES_ITEM_SYSTEM: 道具系统（加速/减速/护盾） (game.js) [completed]
-  - [x] TASK_ADVANCED_FEATURES_LOCAL_STORAGE: 本地分数存储 (game.js) [completed]
+- [X] TASK1: Draft bilingual game instructions (Chinese & English). [completed]
+- [X] TASK2: Modify `index.html` to add a new section for the instructions. [completed]
+- [X] TASK3: Add CSS rules to `style.css` to style the new instruction section. [completed]
+- [X] TASK4: Review and verify the changes. [completed]
+- [X] TASK5: Refactor `index.html` for side-by-side layout of canvas and instructions. [completed]
+- [X] TASK6: Update `style.css` for the new layout and visual optimization. [completed]
+- [X] TASK7: Review and verify optimization changes. [completed]
+
 ## Implementation Notes
-- 技术规范：分辨率800x600，Material Blue 500主色调，60fps，键盘方向键+触摸支持。
-- 遵循 `game-design.md` 中的文件结构和设计。
-- 确保 `contexts` 目录被创建用于存放上下文文件。
-- [x] TASK_OPENSOURCE: 开源准备 [completed]
-  - [x] TASK_NAME: 确定项目名称 (NeuroSnake) [completed]
-  - [x] TASK_README: 创建/完善 README.md 文件 [completed]
+- Instructions should be clear and concise.
+- Styling should be consistent with the existing game's Material Design theme.
+- Initially, both languages will be displayed simultaneously. A language toggle can be a future enhancement if requested.
+- **Optimization Phase**: Instructions panel to be moved to the right of the canvas, inside the main game container, with appropriate styling adjustments based on user feedback image.
