@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html data-i18n-attr-lang="lang">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>贪食蛇</title>
+    <title data-i18n-key="pageTitle">贪食蛇</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -11,41 +11,47 @@
         <div class="ui-panel">
             <div class="scores">
                  <div id="scoreboard">
-                     <span>分数: </span><span id="scoreValue">0</span>
+                     <span data-i18n-key="scoreLabel">分数: </span><span id="scoreValue">0</span>
                  </div>
                  <div id="highScoreDisplay">
-                     <span>最高分: </span><span id="highScoreValue">0</span>
+                     <span data-i18n-key="highScoreLabel">最高分: </span><span id="highScoreValue">0</span>
                  </div>
             </div>
             <div class="controls">
-                <button id="startBtn">开始</button>
-                <button id="pauseBtn" style="display: none;">暂停</button>
-                <button id="modeSwitchBtn">切换至 AI 模式</button>
+                <button id="startBtn" data-i18n-key="startBtn">开始</button>
+                <button id="pauseBtn" style="display: none;" data-i18n-key="pauseBtn">暂停</button>
+                <button id="modeSwitchBtn" data-i18n-key="modeSwitchBtnManual">切换至 AI 模式</button>
+                <button id="langSwitchBtn" data-i18n-key="langSwitchBtn">English</button>
+                <div class="game-settings">
+                    <label for="difficultySelect" data-i18n-key="difficultyLabel">难度:</label>
+                    <select id="difficultySelect">
+                        <option value="easy" data-i18n-key="difficultyEasy">简单</option>
+                        <option value="medium" selected data-i18n-key="difficultyMedium">中等</option>
+                        <option value="hard" data-i18n-key="difficultyHard">困难</option>
+                    </select>
+                    <label for="mapSizeSelect" data-i18n-key="mapSizeLabel">地图大小:</label>
+                    <select id="mapSizeSelect">
+                        <option value="small" data-i18n-key="mapSizeSmall">小</option>
+                        <option value="medium" selected data-i18n-key="mapSizeMedium">中</option>
+                        <option value="large" data-i18n-key="mapSizeLarge">大</option>
+                    </select>
+                </div>
             </div>
         </div>
         <div class="game-main-area">
             <canvas id="gameCanvas"></canvas>
-            <div class="game-instructions">
-                <div class="instructions-en">
-                    <h3>Game Instructions</h3>
-                    <p><strong>Controls:</strong> Use Arrow Keys (↑ ↓ ← →) or WASD keys to move the snake.</p>
-                    <p><strong>Buttons:</strong></p>
-                    <ul>
-                        <li>"Start Game / Pause Game / Resume Game": To control game state.</li>
-                        <li>"Toggle AI Mode": Switch between manual play and AI auto-play.</li>
-                    </ul>
-                    <p><strong>Objective:</strong> Eat food to grow longer. Avoid hitting walls or the snake's own body.</p>
-                </div>
-                <div class="instructions-zh">
-                    <h3>游戏说明</h3>
-                    <p><strong>控制:</strong> 使用方向键 (↑ ↓ ← →) 或 WASD 键来移动小蛇。</p>
-                    <p><strong>按钮:</strong></p>
-                    <ul>
-                        <li>“开始游戏 / 暂停游戏 / 继续游戏”：控制游戏状态。</li>
-                        <li>“切换AI模式”：在手动操作和AI自动游戏之间切换。</li>
-                    </ul>
-                    <p><strong>目标:</strong> 吃掉食物使身体变长。避免撞到墙壁或蛇自己的身体。</p>
-                </div>
+            <div class="game-instructions" id="gameInstructionsContainer">
+                <!-- Content will be dynamically populated by JavaScript -->
+                <h3 data-i18n-key="instructionsTitle">Game Instructions</h3>
+                <p><strong data-i18n-key="controlsLabel">Controls:</strong> <span data-i18n-key="controlsText">Use Arrow Keys (↑ ↓ ← →) or WASD keys to move the snake.</span></p>
+                <p><strong data-i18n-key="buttonsSettingsLabel">Buttons & Settings:</strong></p>
+                <ul>
+                    <li data-i18n-key="buttonStartPauseHelp">"Start / Pause / Resume": To control game state.</li>
+                    <li data-i18n-key="buttonAiModeHelp">"Toggle AI Mode": Switch between manual play and AI auto-play.</li>
+                    <li data-i18n-key="settingDifficultyHelp">"Difficulty" dropdown: Select game difficulty (Easy, Medium, Hard). Affects game speed and potentially other factors. Changes apply on new game.</li>
+                    <li data-i18n-key="settingMapSizeHelp">"Map Size" dropdown: Select game map size (Small, Medium, Large). Changes apply on new game or immediately if game is not running.</li>
+                </ul>
+                <p><strong data-i18n-key="objectiveLabel">Objective:</strong> <span data-i18n-key="objectiveText">Eat food to grow longer. Avoid hitting walls or the snake's own body.</span></p>
             </div>
         </div>
     </div>
