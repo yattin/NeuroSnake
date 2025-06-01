@@ -9,6 +9,8 @@ const highScoreValueElement = document.getElementById('highScoreValue');
 let score = 0;
 let highScore = 0;
 const highScoreKey = 'snakeHighScore'; // Key for localStorage
+const leaderboardKey = 'neuroSnakeLeaderboard'; // Key for leaderboard in localStorage
+const MAX_LEADERBOARD_ENTRIES = 10;
 
 const modeSwitchBtn = document.getElementById('modeSwitchBtn');
 const startBtn = document.getElementById('startBtn');
@@ -50,7 +52,9 @@ const translations = {
     objectiveText: "Eat food to grow longer. Avoid hitting walls or the snake's own body.",
     gameOverText: "Game Over!",
     gameOverScore: "Your Score: {score}",
-    gameOverMapChanged: "Map changed. Click Start."
+    gameOverMapChanged: "Map changed. Click Start.",
+    leaderboardTitle: "Leaderboard",
+    leaderboardEmpty: "No scores yet. Be the first!"
   },
   zh: {
     pageTitle: "贪食蛇",
@@ -83,7 +87,9 @@ const translations = {
     objectiveText: "吃掉食物使身体变长。避免撞到墙壁或蛇自己的身体。",
     gameOverText: "游戏结束!",
     gameOverScore: "你的得分: {score}",
-    gameOverMapChanged: "地图已更改。点击开始。"
+    gameOverMapChanged: "地图已更改。点击开始。",
+    leaderboardTitle: "排行榜",
+    leaderboardEmpty: "暂无记录，快来争当第一名！"
   }
 };
 
@@ -402,8 +408,42 @@ function gameOver() {
     ctx.font = '20px Arial';
     ctx.fillText(translate('gameOverScore', { score: score }), canvas.width / 2, canvas.height / 2 + 40);
 
+    saveToLeaderboard(score); // Save score to leaderboard
+    displayLeaderboard(); // Display leaderboard after game over
 }
 
+function saveToLeaderboard(currentScore) {
+    const playerName = "Player"; // Placeholder for now
+    const newEntry = {
+        playerName: playerName,
+        score: currentScore,
+        difficulty: currentDifficulty,
+        mapSize: currentMapSize,
+        date: new Date().toISOString()
+    };
+
+    let leaderboard = [];
+    try {
+        const storedLeaderboard = localStorage.getItem(leaderboardKey);
+        if (storedLeaderboard) {
+            leaderboard = JSON.parse(storedLeaderboard);
+        }
+    } catch (e) {
+        console.error("Failed to load leaderboard from localStorage:", e);
+        leaderboard = []; // Reset if loading fails
+    }
+
+    leaderboard.push(newEntry);
+    leaderboard.sort((a, b) => b.score - a.score); // Sort by score descending
+    leaderboard = leaderboard.slice(0, MAX_LEADERBOARD_ENTRIES); // Keep only top N entries
+
+    try {
+        localStorage.setItem(leaderboardKey, JSON.stringify(leaderboard));
+        console.log("Score saved to leaderboard:", newEntry);
+    } catch (e) {
+        console.error("Failed to save leaderboard to localStorage:", e);
+    }
+}
 
 // 初始化游戏
 function init() {
@@ -427,6 +467,7 @@ function init() {
     // drawGrid is called by applyMapSettings
     drawFood();
     drawSnake();
+    displayLeaderboard(); // Display leaderboard on init
     // gameLoop();
 }
 
@@ -621,6 +662,42 @@ function loadHighScore() {
         console.error("Failed to load high score from localStorage:", e);
         highScore = 0; // Default on error
     }
+}
+
+function displayLeaderboard() {
+    const leaderboardListElement = document.getElementById('leaderboardList');
+    if (!leaderboardListElement) {
+        console.error("Leaderboard list element not found!");
+        return;
+    }
+
+    leaderboardListElement.innerHTML = ''; // Clear existing entries
+
+    let leaderboard = [];
+    try {
+        const storedLeaderboard = localStorage.getItem(leaderboardKey);
+        if (storedLeaderboard) {
+            leaderboard = JSON.parse(storedLeaderboard);
+        }
+    } catch (e) {
+        console.error("Failed to load leaderboard from localStorage for display:", e);
+        leaderboard = [];
+    }
+
+    if (leaderboard.length === 0) {
+        const li = document.createElement('li');
+        li.textContent = translate('leaderboardEmpty') || "No scores yet. Be the first!"; // Add translation for this
+        leaderboardListElement.appendChild(li);
+    } else {
+        leaderboard.forEach((entry, index) => {
+            const li = document.createElement('li');
+            // Format: 1. Player - Score: 100 (Medium, Small) - 2023-10-27
+            const date = new Date(entry.date).toLocaleDateString();
+            li.textContent = `${index + 1}. ${entry.playerName} - ${translate('scoreLabel')}${entry.score} (${translate('difficulty' + entry.difficulty.charAt(0).toUpperCase() + entry.difficulty.slice(1))}, ${translate('mapSize' + entry.mapSize.charAt(0).toUpperCase() + entry.mapSize.slice(1))}) - ${date}`;
+            leaderboardListElement.appendChild(li);
+        });
+    }
+    updateUIText(); // Ensure the leaderboard title is also translated if it wasn't already
 }
 
 window.onload = init;
